@@ -1,4 +1,4 @@
-# Ai266-spring22 Saturday 3-6pm
+# Ai266 Saturday 3-6pm
 
 Project Partners
 10521 - Syed Abdul Rafay Ahmed Shah
