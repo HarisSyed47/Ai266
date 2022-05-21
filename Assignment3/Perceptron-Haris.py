@@ -1,7 +1,4 @@
-#Assignment 3
-#Descp: Applying Perception Model on Training & Testing Datasets.
-#Name: Syed Haris Mazhar
-#Date: 20/05/2022
+
 
 import pandas as pd
 from sklearn.metrics import accuracy_score
