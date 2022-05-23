@@ -1,0 +1,43 @@
+import pandas as pd
+from sklearn.metrics import accuracy
+from sklearn.model_selection import train_test
+from sklearn import metrics
+from sklearn.model_selection import cross_score
+from sklearn.linear_model import Perceptron
+
+train = pd.read_csv("train.csv")
+test = pd.read_csv('test.csv')
+print("train")
+print(train.head())
+print("Tested")
+print(test.head())
+del train['id']
+del train['k_27']
+del test['k_27']
+X = train.drop(columns=['targets'])
+y = train['targets']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4, random_state=22)
+
+perceptron = Perceptron()
+perceptron.fit(X_train, y_train)
+Y_pred = perceptron.predict(X_test)
+accuracy_perceptron = round(perceptron.score(X_train, y_train) * 100, 2)
+print("Corrected")
+accuracy_perceptron
+per_clf = Perceptron()
+per_scores = cross_val_score(per_clf, X_train, y_train, cv=4)
+per_mean = per_scores.mean()
+print('Perceptron Accuracy after CV: ',per_mean)
+newCSVTest = test[['id']]
+
+newCSVTest
+
+predT = test.drop(columns=['id'])
+predT.head()
+
+predictOnTest = perceptron.predict(predT)
+
+newCSVTest['target'] = predictOnTest
+
+newCSVTest.head()
+newCSVTest.to_csv('NB-Percept.csv', index=False)
